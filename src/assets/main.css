@@ -1,0 +1,17 @@
+@import './base.css';
+@import './waste.css';
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Itim&display=swap');
+
+
+*{margin: 0;padding: 0;box-sizing: border-box;}
+
+
+body{
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+}
+
