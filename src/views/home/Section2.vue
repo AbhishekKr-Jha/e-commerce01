@@ -57,14 +57,14 @@ export default {
     <h2  class="text-center">Explore Collections</h2>
 <RotatingCrads />
 <button style="margin-bottom: -60px;width: 150px;
-    padding: 10px 0;" type="button"  class="rounded-lg pointer text-lg transition-animation" >Explore More</button>
+    padding: 10px 0;" type="button"  class="rounded-lg pointer text-lg transition-animation buy-button" >Explore More</button>
    </div>
      
 </template>
 
 
 <style scoped>
-button{
+.buy-button{
     width: 150px;
     padding: 10px 0;
     font-family: "Itim", cursive;
@@ -72,11 +72,10 @@ button{
     border:none;
     background-color: rgb(1,84,154);
     color:white;
-
 }
 
 
-button:hover{
+.buy-button:hover{
   background: rgba(1,84,154,0.82);
   transform: scale(1.1);
   /* border-color: #01549A; */

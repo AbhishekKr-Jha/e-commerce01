@@ -1,5 +1,6 @@
 
 <script> 
+    import PrimaryBanner from '../../components/PrimaryBanner.vue'
 import Section1 from './Section1.vue'
 import Section2 from './Section2.vue'
 import Section3 from './Section3.vue'
@@ -11,6 +12,7 @@ import Section7 from './Section7.vue'
 export default{
     name:'Home',
     components:{
+        PrimaryBanner,
         Section1,
         Section2,
         Section3,
@@ -24,8 +26,8 @@ export default{
 
 
 <template>
-
-<div style="margin-top:450px;margin-bottom:100px;" class="w-full  h-min flex flex-col gap-30" >
+<PrimaryBanner />
+<div style="margin-top:550px;margin-bottom:100px;" class="w-full  h-min flex flex-col gap-30 " >
 
 <Section1 />
 <Section2 />

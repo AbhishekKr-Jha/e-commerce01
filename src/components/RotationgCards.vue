@@ -95,8 +95,6 @@ export default{
     </div> -->
     <div style="font-family: 'Itim', cursive;" class="">
     <p  style="color: red;" class="text-3xl font-semibold">FakeBazar</p>
-    <br>
-    <p></p>
 </div>
 </div>
 

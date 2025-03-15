@@ -42,7 +42,7 @@ export default{
 
 <template>
 
-    <div style="padding-left: 5px;" class="home-section1-container mx-auto pt-20  flex  justify-center items-center overflow-x-auto gap-60 hide-scrollbar">
+    <div  class="home-section1-container mx-auto pt-20  flex  justify-center items-center overflow-x-auto gap-60 hide-scrollbar">
 
         <!-- <div v-for="ele in servicesList" :key="ele.text" class="">
 <img :src="ele.img" width="100px" />
@@ -50,7 +50,7 @@ export default{
           </div> -->
 
 
-          <div v-for="ele in servicesList" :key="ele.text" style="flex-shrink: 0;" class="inner-items flex justify-center items-center">
+          <div v-for="ele in servicesList" :key="ele.text" style="flex-shrink: 0;" class="inner-items text-xl flex justify-center items-center pointer">
             <p>{{ ele.text }}</p> 
           </div>
 
@@ -72,9 +72,12 @@ export default{
 
    .inner-items{
     background: #F3F3F3;
-    width: 130px;
+    width: 140px;
    height: 50px;
-
+   border-radius: 25px;
+   background: rgb(1,84,154);
+   font-family: "Itim", cursive;
+color:white ;
    }
 
 

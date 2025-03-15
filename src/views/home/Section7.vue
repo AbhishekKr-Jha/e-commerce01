@@ -57,4 +57,12 @@ export default{
 p{
     font-family: "Itim", cursive;
 }
+@media (max-width: 380px) {
+  .services-item{
+    width: 96% !important;
+    min-width: auto;
+    height: 180px;
+    padding: 10px 0;
+  }
+  }
 </style>

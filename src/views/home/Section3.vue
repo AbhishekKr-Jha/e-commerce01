@@ -70,17 +70,24 @@ export default {
       <div
         v-for="(ele, index) in mensWear"
         :key="index"
-        class="box rounded-lg overflow-hidden relative"
+        class="rounded-lg overflow-hidden relative  box "
       >
+      <i style="color: red; z-index: 110;" class="ri-heart-3-line absolute top-10 right-10 text-2xl pointer" ></i>
         <img
           :src="ele.image"
-          class="absolute"
+          class="absolute men-clothes-image"
           :style="{ width: ele.width }"
           :class="[ele.responsiveClass]"
         />
+
+        <div style="z-index: 110;" type="button" class="absolute rounded-full  text-2xl pointer button"><i class="ri-arrow-right-down-line arrow-icon"></i> </div>
+        <div  class="title-text text-center flex justify-center items-end text-xl">{{ ele.title }}</div>
       </div>
     </div>
   </div>
+
+
+
 
 
 
@@ -92,15 +99,19 @@ export default {
       <div
         v-for="(ele, index) in womensWear"
         :key="index"
-        class="box rounded-lg overflow-hidden relative"
+        class="woman-box rounded-lg overflow-hidden relative"
       >
+      <i style="color: red; z-index: 110;" class="ri-heart-3-line absolute top-10 right-10 text-2xl pointer" ></i>
+
         <img
           :src="ele.image"
           class="absolute women-clothes-image"
           
-         
-         
         />
+        <div style="z-index: 110;" type="button" class="absolute rounded-full  text-2xl pointer button"><i class="ri-arrow-right-down-line arrow-icon"></i> </div>
+        <!-- <div  padding="20px 10px width
+        90%" class=" title-text text-center flex justify-center items-end text-xl">{{ ele.title }}</div>
+       -->
       </div>
     </div>
   </div>
@@ -109,6 +120,15 @@ export default {
 
 <style scoped>
 .box {
+  width: 46%; /* 50% width with spacing adjustment */
+  background-color: lightgray;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  max-width: 500px;
+  height: 300px;
+}
+.woman-box{
   width: 46%; /* 50% width with spacing adjustment */
   background-color: lightgray;
   padding: 20px;
@@ -130,12 +150,31 @@ export default {
   transition: all linear 0.5s;
 }
 
+
+.woman-box img{
+  width: 55%;
+  height: auto;
+  z-index: 50;
+  object-fit: contain;
+  top: 68%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(2deg);
+  transition: all linear 0.5s;
+}
 .women-clothes-image{
     top: 82% !important;
     width: 55%;
 }
 
-.box:hover .women-clothes-image{
+.box:hover .men-clothes-image{
+    top: 50% !important;
+    left: 50%;
+    /* width: 40% !important; */
+    width: 40% !important;
+    transform:translate(-50%, -50%) rotate(2deg) scale();
+}
+
+.woman-box:hover .women-clothes-image{
     top: 50% !important;
     left: 50%;
     width: 35%;
@@ -146,6 +185,13 @@ export default {
 @media (max-width: 750px) {
   .box {
     width: 95%; /* Full width on smaller screens */
+  }
+  .woman-box{
+    width: 95%;
+  }
+  .woman-box img{
+    top: 90% !important;
+    width: 62%;
   }
 }
 
@@ -161,5 +207,17 @@ export default {
         width: 97% !important;
         max-width: 232px;
   }
+
+  
+  .woman-box img{
+    top: 60% !important;
+    width: 62%;
+  }
+  .woman-box:hover .women-clothes-image{
+    top: 50% !important;
+    left: 50%;
+    width: 45%;
+    transform:translate(-50%, -50%) rotate(2deg) scale();
+}
 }
 </style>

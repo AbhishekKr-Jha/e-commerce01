@@ -89,7 +89,7 @@ export default{
 </div>
 </div>
 
-<button style="" type="button"  class="rounded-lg pointer text-lg mt-20" >See More</button>
+<button style="" type="button"  class="rounded-lg pointer text-lg mt-20 buy-button transition-animation" >See More</button>
 
 
 </div>
@@ -103,6 +103,7 @@ export default{
 width: 400px;
 overflow: hidden;
 padding: 20px;
+/* background: #87c2ef; */
 }
 .item-box{
     height: 250px;

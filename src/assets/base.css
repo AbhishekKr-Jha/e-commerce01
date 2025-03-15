@@ -89,6 +89,9 @@
 .bg-red{background-color: red;}
 .bg-green{background-color: green;}
 .bg-blue{background-color: blue;}
+.bg-gray{background-color: gray;}
+
+
 
 /* ✅ ABSOLUTE */
 .relative{position: relative;}
