@@ -11,12 +11,12 @@
 <p style="font-size: 26px;" class="para1">Explore the latest iPhone19+</p>
 <!-- <p style="font-size: 26px;" class="para2">Explore the latest iPhone19+</p> -->
 <div  class="mt-10 text-xl">
-    <li>without charger</li>
-<li>without charger</li>
-<li>without charger</li>
+    <li>Without charger</li>
+<li>Without battery</li>
+<li>  Without iphone</li>
 </div>
 
-<button style="" type="button"  class="rounded-lg pointer text-lg mt-20" >Buy Now</button>
+<button       @click="$router.push({path:'/products',query:{category:'electronics'}})" style="" type="button"  class="rounded-lg pointer text-lg mt-20" >Buy Now</button>
 
 </div>
 

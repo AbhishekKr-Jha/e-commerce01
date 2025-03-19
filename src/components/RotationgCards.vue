@@ -93,9 +93,9 @@ export default{
   <!-- <div class="card" style="--index: 9;--color-card: 142, 202, 252;">
       <div class="img"></div>
     </div> -->
-    <div style="font-family: 'Itim', cursive;" class="">
+    <!-- <div style="font-family: 'Itim', cursive;" class="">
     <p  style="color: red;" class="text-3xl font-semibold">FakeBazar</p>
-</div>
+</div> -->
 </div>
 
 </template>

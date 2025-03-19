@@ -1,192 +1,350 @@
-
-
 <script>
-export default{
-    name:'Header',
-    default(){
-        return{
-            isHamBurgerOpen:false
-        }
-    }
-}
+import { EventBus } from "@/utils/eventBus";
+import LogoutBtn from "./LogoutBtn.vue";
 
-
-
+export default {
+  name: "Header",
+  data() {
+    return {
+      isHamBurgerOpen: false,
+      isUserLoggedIn: localStorage.getItem("token") ? true : false,
+      hamburgerList: [
+        // {
+        //   text: 'Home',
+        //   navigateTo: '/'
+        // },
+        {
+          text: "Products",
+          navigateTo: "/products",
+        },
+        {
+          text: "Cart",
+          navigateTo: "/cart",
+        },
+        {
+          text: "Wishlist",
+          navigateTo: "/wishlist",
+        },
+        {
+          text: "Profile",
+          navigateTo: "/profile",
+        },
+        {
+          text: "About",
+          navigateTo: "/about",
+        },
+        {
+          text: "Conatct",
+          navigateTo: "/contact",
+        },
+      ],
+    };
+  },
+  components: {
+    LogoutBtn,
+  },
+  methods: {
+    updateHeader() {
+      console.log("User updated, re-rendering header!");
+      this.isUserLoggedIn = localStorage.getItem("token") ? true : false;
+      this.$forceUpdate();
+    },
+    logoutHandler() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("cartList");
+      localStorage.removeItem("watchList");
+      this.isUserLoggedIn = false;
+      this.$router.push("/login");
+      this.isHamBurgerOpen = false;
+    },
+  },
+  created() {
+    EventBus.on("login-check", this.updateHeader);
+  },
+  beforeDestroy() {
+    EventBus.off("login-check", this.updateHeader);
+  },
+};
 </script>
 
-
 <template>
-    
-    <header style="max-width: 1500px;" class="w-full bg-red-900 flex flex-col items-center justify-center mx-auto relative">
-        <!-- <video style="z-index: -10;width: 100%;" autoplay loop muted playsinline class="absolute top-0 left-0  object-cover ">
+  <header
+    style="z-index: 250; position: fixed; top: 0; left: 0"
+    class="w-full relative header-container"
+  >
+    <!-- <video style="z-index: -10;width: 100%;" autoplay loop muted playsinline class="absolute top-0 left-0  object-cover ">
     <source src="/video_asset.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video> -->
 
-<div style="height: 550px;z-index: -10;padding-left: 20px " class="w-full absolute top-0 left-0 header-inner-container bg-red flex   items-center ">
+    <div
+      style="height: 65px; padding: 20px; z-index: 20; max-width: 1500px"
+      class="w-full mx-auto flex justify-between items-center"
+    >
+      <div style="" class="logo-container pointer" @click="$router.push('/')">
+        <img src="/logo.png" width="130px" class="" />
+      </div>
 
-<div class="heading-box ">
-<h4 >   Elevate Your Experience </h4> <h1><span style="padding-left: 20px;">By  Seamless Shopping </span><br> <div style="font-size: 38px;" class="text-center">&</div>  Speedy Delivery </h1>
-</div>
+      <div
+        v-show="!isUserLoggedIn"
+        class="flex text-xl gap-30 menu-display-style"
+      >
+        <div
+          class="pointer"
+          :class="{ 'active-nav': $route.path.startsWith('/products') }"
+          @click="
+            $router.push({ path: '/products', query: { category: 'all' } })
+          "
+        >
+          Products
+        </div>
+        <div
+          class="pointer"
+          :class="{ 'active-nav': $route.path === '/about' }"
+          @click="$router.push('/about')"
+        >
+          About
+        </div>
+        <div
+          class="pointer"
+          :class="{ 'active-nav': $route.path === '/contact' }"
+          @click="$router.push('/contact')"
+        >
+          Contact
+        </div>
+      </div>
 
-<div style="flex: 1;" class="bg-green pt-20 w-full h-full flex relative overflow-hidden image-box">
-<div class="box1 absolute left-25 bottom-0 ">
-<img src="/headerImage1.png"  width="100%" height="100%" style=""/>
+      <div
+        v-show="isUserLoggedIn"
+        style="font-size: 32px"
+        class="flex gap-30 menu-display-style"
+      >
+        <div
+          class="pointer"
+          :class="{ 'active-nav': $route.path === '/wishlist' }"
+          @click="$router.push('/wishlist')"
+        >
+          <i class="ri-heart-3-line"></i>
+        </div>
+        <div
+          class="pointer"
+          :class="{ 'active-nav': $route.path === '/profile' }"
+          @click="$router.push('/profile')"
+        >
+          <i class="ri-user-line"></i>
+        </div>
+        <div
+          class="pointer"
+          :class="{ 'active-nav': $route.path === '/cart' }"
+          @click="$router.push('/cart')"
+        >
+          <i class="ri-shopping-cart-line"></i>
+        </div>
+      </div>
 
-<div style="z-index: 40;"  class="absolute  flex justify-center items-center rounded-full bg-gray inner-box-1">
-<img src="/headerImage2.png" width="170px" height="auto" class="object-fit-contain " />
-</div>
+      <div
+        v-show="isUserLoggedIn"
+        class="flex items-center gap-30 text-xl menu-options menu-display-style"
+      >
+        <div
+          class="pointer"
+          :class="{ 'active-nav': $route.path === '/products' }"
+          @click="
+            $router.push({ path: '/products', query: { category: 'all' } })
+          "
+        >
+          Products
+        </div>
+        <div
+          class="pointer"
+          :class="{ 'active-nav': $route.path === '/about' }"
+          @click="$router.push('/about')"
+        >
+          About
+        </div>
+        <div
+          class="pointer"
+          :class="{ 'active-nav': $route.path === '/contact' }"
+          @click="$router.push('/contact')"
+        >
+          Contact
+        </div>
 
-<div style="z-index: 40;"  class="absolute  flex justify-center items-center rounded-full bg-gray inner-box-2">
-<img src="/headerImage3.png" width="100px" height="auto" class="object-fit-contain " />
-</div>
+        <!-- <div class="pointer" @click="logoutHandler" >Logout</div> -->
+        <div class="pointer" @click="logoutHandler"><LogoutBtn /></div>
+      </div>
+      <div
+        v-show="!isUserLoggedIn"
+        class="flex items-center gap-10 menu-display-style"
+      >
+        <button
+          type="button"
+          class="auth-button"
+          @click="$router.push('/register')"
+        >
+          SignUp
+        </button>
+        <button
+          type="button"
+          class="auth-button"
+          @click="$router.push('/login')"
+        >
+          SignIn
+        </button>
+      </div>
 
-<div style="z-index: 40;"  class="absolute  flex justify-center items-center rounded-full bg-gray inner-box-3">
-<img src="/headerImage5.png" width="100px" height="auto" class="object-fit-contain " />
-</div>
-
-<div style="z-index: 40;"  class="absolute  flex justify-center items-center rounded-full bg-gray inner-box-4">
-<img src="/headerImage7.png" width="110px" height="auto" class="object-fit-contain " />
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- <div style="padding: 20px;z-index: 20;" class="w-full flex justify-between mx-auto relative ">
-    <div class="">E-COM</div>
-
-<div class=""><i :class="!isHamBurgerOpen? 'ri-menu-line':'ri-close-large-line'"></i></div>
-
-    <div class="flex gap-30 text-xl menu-options">
-      <div class="pointer" v-for="(ele,index) in 4" :key="index">About</div>
+      <div
+        class="font-medium hamburger-display-style"
+        style="font-size: 30px; color: white"
+        @click="isHamBurgerOpen = true"
+      >
+        <i class="ri-menu-3-line"></i>
+      </div>
     </div>
-</div> -->
-</header>
-    
+
+    <div
+      class="side-nav flex flex-col items-center gap-20"
+      :class="{ open: isHamBurgerOpen }"
+    >
+      <!-- <div class="close-btn" @click="isHamBurgerOpen = false">&times;</div> -->
+      <div
+        @click="
+          $router.push('/');
+          isHamBurgerOpen = false;
+        "
+        style="margin-top: 40px; margin-bottom: 10px"
+        class="logo-container"
+      >
+        <img src="/logo.png" width="170px" class="mx-auto block" />
+      </div>
+      <div
+        style="height: 90vh"
+        class="w-full flex flex-col gap-20 overflow-hidden overflow-y-scroll"
+      >
+        <div
+          @click="
+            $router.push(item.navigateTo);
+            isHamBurgerOpen = false;
+          "
+          v-for="(item, index) in hamburgerList"
+          :key="index"
+          class="bg-blue text-2xl rounded-lg w-full hamburger-menu-list"
+           :class="{ 'active-nav-hamburger': $route.path === item.navigateTo }"
+        >
+          <!-- <i style="padding-right: 10px;font-size: 25px;" class="ri-home-4-line "></i> -->
+          {{ item.text }}
+        </div>
+
+        <div
+          class="bg-blue text-2xl rounded-lg w-full hamburger-menu-list"
+          :style="{ backgroundColor: isUserLoggedIn ? 'red' : 'blue' }"
+          @click="logoutHandler"
+        >
+          {{ isUserLoggedIn ? "Logout" : "Login" }}
+        </div>
+      </div>
+
+      <div
+        style="color: rgb(1, 84, 154); font-size: 30px"
+        @click="isHamBurgerOpen = false"
+        class="absolute top-10 right-10 text-2xl font-bold"
+      >
+        <i class="ri-close-large-line"></i>
+      </div>
+    </div>
+
+    <div
+      v-if="isHamBurgerOpen"
+      class="overlay"
+      @click="isHamBurgerOpen = false"
+    ></div>
+  </header>
 </template>
 
- 
+<style scoped>
+.active-nav {
+  color: red;
+  font-weight: 500;
+}
+.active-nav-hamburger{
+    background-color: #EFF8FF;
+    color: #01549A;
+}
 
-<style scoped> 
-video {
-  width: 100%;
-  height: 500px; 
-  object-fit: cover; 
-  position: absolute;
+.header-container {
+  font-family: "Itim", cursive;
+  background-color: rgba(1, 85, 154, 0.116);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.logo-container {
+  /* background-color:rgba(1, 85, 154, 0.152);
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px); */
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+  border-radius: 10px;  */
+}
+.auth-button {
+  width: 100px;
+  height: 35px;
+  transform: skew(-25deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: rgb(1, 84, 154);
+  color: white;
+}
+
+.hamburger-menu-list {
+  padding: 12px 10px;
+  padding-left: 20px;
+}
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -86%; /* Initially hidden */
+  width: 85%;
+  max-width: 400px;
+
+  min-height: 100vh;
+  /* background: rgba(1, 85, 154, 0.9); */
+  background: white;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+  z-index: 300;
+  padding-bottom: 30px;
+}
+
+.side-nav.open {
+  left: 0; /* Slide in when open */
+}
+
+.overlay {
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: -10;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
 }
 
-.header-inner-container{
-
+.hamburger-display-style {
+  display: none;
 }
 
-.box1{
-    padding-top:1px;
-    width: 460px; 
-    height: auto;
-    max-height: 97%;
-    background: blue;
-    left: 15%;
-    bottom: -10px;
-    border-radius: 51% 48% 25% 25% / 57% 59% 0% 0%;
-}
-.inner-box-1{
-width: 110px ;
-height: 110px;
-left:-10%;
-bottom: 50px; 
-}
-
-.inner-box-2{
-width: 70px ;
-height: 70px;
-left:30;
-top: 60px; 
-}
-
-.inner-box-3{
-width: 70px ;
-height: 70px;
-left:-10%;
-top: 180px; 
-}
-
-.inner-box-4{
-width: 90px ;
-height: 90px;
-left:30%;
-top: -20px; 
-}
-
-/* .inner-box-3{
-width: 70px ;
-height: 70px;
-left:30;
-top: 60px; 
-} */
-
-@media (max-width: 1000px) {
-  h4{
-    font-size: 30px;
-  }
-  h1{
-    font-size: 36px;
-  }
+@media (max-width: 900px) {
+  .hamburger-display-style {
+    display: block;
   }
 
-
-  @media (max-width: 900px) {
-    .header-inner-container{
- flex-direction: column;
-
-}
-
-.image-box{
-    order: 1;
-}
-
-.image-box .box1{
-/* left: 30%; */
-}
-  .heading-box{
-order: 2;
-width: 100%;
-height: 100%;
-position: absolute;
-z-index: 300;
-bottom: 50px;
-left:0;
-display: flex;flex-direction: column; justify-content: end;align-items: center;
+  .menu-display-style {
+    display: none;
   }
-  h4{
-    font-size: 30px;
-  }
-  h1{
-    font-size: 48px;
-  }
-  }
-
-  @media (max-width: 520px) {
-    .image-box{overflow-y: hidden;overflow-x: auto;}
-.box1{
-    width: 400px; 
-    left: 0;
 }
-.image-box{width: 100%;}
-h4{font-size: 22px;}
-h1{
-    font-size: 34px;
-}
-  }
-
-
 </style>
-
-

@@ -85,11 +85,11 @@ export default{
 <div style="flex-shrink: 0;padding: 15px 15px 0px 15px;"  class="w-full  flex justify-center items-end relative item-box">
 <img :src="item.image" width="100%" height="90%" style="object-fit: contain;" class="absolute bottom-0" />
 </div>
-<p  class="text-lg font-semibold mt-20">{{ item.title }}</p>
+<p  @click="$router.push({path:'/product-details',query:{id:item.id}})" class="text-lg font-semibold mt-20 pointer">{{ item.title }}</p>
 </div>
 </div>
 
-<button style="" type="button"  class="rounded-lg pointer text-lg mt-20 buy-button transition-animation" >See More</button>
+<button       @click="$router.push({path:'/products',query:{category:'electronics'}})" style="" type="button"  class="rounded-lg pointer text-lg mt-20 buy-button transition-animation" >See More</button>
 
 
 </div>

@@ -27,10 +27,13 @@ export default{
 
 <template>
 <PrimaryBanner />
-<div style="margin-top:550px;margin-bottom:100px;" class="w-full  h-min flex flex-col gap-30 " >
+<div style="margin-top:550px;margin-bottom:100px;" class="w-full h-min   flex flex-col gap-30 " >
 
-<Section1 />
+    <!-- section ategories man , woman, jewelery etc----- -->
+<Section1 />  
+<!-- ---------slider and rotating boxes-------- -->
 <Section2 />
+<!-- ---------man & woman trends section------ -->
 <Section3 />
 <Section4 />
 <Section5 />

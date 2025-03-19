@@ -8,6 +8,7 @@ export default {
           id: 2,
           title: "Mens Casual Premium Slim Fit T-Shirts ",
           price: 22.3,
+          category:"men's clothin",
           image: "/man_clothes1.png",
           rating: {
             rate: 4.1,
@@ -23,6 +24,7 @@ export default {
           id: 3,
           title: "Mens Cotton Jacket",
           price: 55.99,
+          category:"men's clothin",
           image: "/man_clothes2.png",
           rating: {
             rate: 4.7,
@@ -72,7 +74,7 @@ export default {
         :key="index"
         class="rounded-lg overflow-hidden relative  box "
       >
-      <i style="color: red; z-index: 110;" class="ri-heart-3-line absolute top-10 right-10 text-2xl pointer" ></i>
+      <!-- <i style="color: red; z-index: 110;" class="ri-heart-3-line absolute top-10 right-10 text-2xl pointer" ></i> -->
         <img
           :src="ele.image"
           class="absolute men-clothes-image"
@@ -80,7 +82,7 @@ export default {
           :class="[ele.responsiveClass]"
         />
 
-        <div style="z-index: 110;" type="button" class="absolute rounded-full  text-2xl pointer button"><i class="ri-arrow-right-down-line arrow-icon"></i> </div>
+        <div style="z-index: 110;" type="button" class="absolute rounded-full  text-2xl pointer button" @click="$router.push({path:'/product-details',query:{id:ele.id}})"><i class="ri-arrow-right-down-line arrow-icon"></i> </div>
         <div  class="title-text text-center flex justify-center items-end text-xl">{{ ele.title }}</div>
       </div>
     </div>
@@ -101,14 +103,14 @@ export default {
         :key="index"
         class="woman-box rounded-lg overflow-hidden relative"
       >
-      <i style="color: red; z-index: 110;" class="ri-heart-3-line absolute top-10 right-10 text-2xl pointer" ></i>
+      <!-- <i style="color: red; z-index: 110;" class="ri-heart-3-line absolute top-10 right-10 text-2xl pointer" ></i> -->
 
         <img
           :src="ele.image"
           class="absolute women-clothes-image"
           
         />
-        <div style="z-index: 110;" type="button" class="absolute rounded-full  text-2xl pointer button"><i class="ri-arrow-right-down-line arrow-icon"></i> </div>
+        <div style="z-index: 110;" type="button" class="absolute rounded-full  text-2xl pointer button" @click="$router.push({path:'/product-details',query:{id:ele.id}})"><i class="ri-arrow-right-down-line arrow-icon"></i> </div>
         <!-- <div  padding="20px 10px width
         90%" class=" title-text text-center flex justify-center items-end text-xl">{{ ele.title }}</div>
        -->

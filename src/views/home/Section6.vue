@@ -1,6 +1,36 @@
-
-<script>  
-
+<script>
+export default{
+    name:'Section6',
+    data(){
+        return{
+            jeweleryData:[
+            {
+"id": 5,
+"title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+"price": 695,
+"description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+"category": "jewelery",
+"image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+"rating": {
+"rate": 4.6,
+"count": 400
+}
+},{
+"id": 6,
+"title": "Solid Gold Petite Micropave ",
+"price": 168,
+"description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+"category": "jewelery",
+"image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+"rating": {
+"rate": 3.9,
+"count": 70
+}
+},
+            ]
+        }
+    }
+}
 </script>
 
 <template>
@@ -13,11 +43,11 @@
     <img src="/jewellery3.png" width="100%" height="100%" class="object-fit-contain" />
 </div>
 
-<p class="absolute font-bold price-text"> <span>$650 /- </span> only</p>
+<p class="absolute font-bold price-text"> <span>${{jeweleryData[0].price}} /- </span> only</p>
 
 <div style="  font-family: 'Itim', cursive;" class="text-xl font-semibold description-container">
-    <button type="button" style=""  class="absolute text-lg pointer buy-button buy-button2">Buy Now<i style="margin-left: 5px;" class="ri-arrow-right-line text-xl"></i></button>
-    <p>John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet</p>
+    <button  @click="$router.push({path:'/product-details',query:{id:jeweleryData[0].id}})" type="button" style=""  class="absolute text-lg pointer buy-button buy-button2">Buy Now<i style="margin-left: 5px;" class="ri-arrow-right-line text-xl"></i></button>
+    <p>{{jeweleryData[0].title}}</p>
 </div>
     </div>
 
@@ -29,11 +59,11 @@
     <img src="/jewellery5.png" width="145%" height="100%" class=" object-fit-contain -left-40" style="transform:translateX(-30px) rotate(100deg);" />
 </div>
 
-<p class="absolute font-bold price-text"> <span>$650 /- </span> only</p>
+<p class="absolute font-bold price-text"> <span>${{jeweleryData[1].price}} /- </span> only</p>
 
 <div style="  font-family: 'Itim', cursive;" class="text-xl font-semibold description-container">
-    <button type="button" style=""  class="absolute text-lg pointer buy-button buy-button2">Buy Now<i style="margin-left: 5px;" class="ri-arrow-right-line text-xl"></i></button>
-    <p>John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet</p>
+    <button @click="$router.push({path:'/product-details',query:{id:jeweleryData[1].id}})" type="button" style=""  class="absolute text-lg pointer buy-button buy-button2">Buy Now<i style="margin-left: 5px;" class="ri-arrow-right-line text-xl"></i></button>
+    <p>{{jeweleryData[1].title}}</p>
 </div>
     </div>
 
