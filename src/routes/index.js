@@ -23,7 +23,7 @@ const routes = [
   { path: '/orders', component: OrdersPage,meta: { requiresAuth: true } } ,
   { path: '/about', component: AboutPage } ,
   { path: '/contact', component: ContactPage } ,
-];
+]; 
 // orders
 const router = createRouter({
   history: createWebHistory(),

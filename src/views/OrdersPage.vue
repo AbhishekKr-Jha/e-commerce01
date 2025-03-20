@@ -11,7 +11,7 @@
     class="w-full mt-40 mx-auto flex flex-row gap-20 justify-center h-min main-container"
   >
 
-  <p class="text-2xl">No Orders yet</p>
+  <p class="text-2xl">No Orders yet</p>  
 
 </div>
 

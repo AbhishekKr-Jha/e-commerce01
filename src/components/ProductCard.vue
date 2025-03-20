@@ -38,7 +38,7 @@ methods:{
 
 
 //     },
-    async addToCart(){
+    async addToCart(){ 
     this.isLoader=true 
     const response=await apiHelper.post('carts',{
         id:0,
@@ -92,8 +92,8 @@ const productIndex = getWatchListData.findIndex(item => item.id === this.product
         getWatchListData.push(this.productData)
         this.itemInWatchList=true
     }
-    EventBus.emit("wishlist-check");  
     localStorage.setItem('watchList', JSON.stringify(getWatchListData))
+    EventBus.emit("wishlist-check");  
     },
     isItemInWatchList(id){
         let getWatchList = JSON.parse(localStorage.getItem('watchList')) || []

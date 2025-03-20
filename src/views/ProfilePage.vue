@@ -165,7 +165,7 @@ export default{
     <div class="profile-circle text-3xl" >{{ userData.firstname[0].toUpperCase() }}.{{ userData.lastname[0].toUpperCase() }}</div> 
 
     <div @click="dataToShow=item.name;updateProductStorage()" v-for="(item,index) in userList2" :key="index" style="padding-left: 20px;" :style="dataToShow === item.name ? { backgroundColor: '#EFF8FF', color: 'rgb(1,84,154)' } : {}" class="w-full text-left pointer rounded-lg  menu-list-item ">
-        <i class="ri-user-line"></i> {{ item.text }}
+        <i class="ri-user-line"></i> {{ item.text }} 
     </div>
     <div  style="padding-left: 20px;" class="w-full text-left pointer rounded-lg  menu-list-item logout-btn  ">
         <i class="ri-logout-circle-r-line"></i> Logout
