@@ -37,15 +37,15 @@ export default {
 
 <template>
   <div
-    style="padding-left: 400px; padding-right: 50px"
-    class="home-section1-container mx-auto pt-20 flex justify-center items-center overflow-x-auto gap-60 hide-scrollbar"
+    style=" "
+    class="home-section1-container mx-auto pt-20 flex justify-start items-center overflow-x-auto  gap-30 hide-scrollbar"
   >
     <!-- <div v-for="ele in servicesList" :key="ele.text" class="">
 <img :src="ele.img" width="100px" />
 <p>{{ ele.text }}</p>
           </div> -->
 
-    <div
+    <span
       v-for="ele in servicesList"
       :key="ele.text"
       style="flex-shrink: 0"
@@ -53,14 +53,16 @@ export default {
       @click="$router.push({path:'/products',query:{category:ele.query}})"
     >
       <p>{{ ele.text }}</p>
-    </div>
+    </span>
   </div>
 </template>
 
 <style scoped>
 .home-section1-container {
-  width: 90%;
-  max-width: 800px;
+  width: 95%;
+  /* overflow: hidden;
+  overflow-x: scroll; */
+  max-width: 900px;
 }
 
 .inner-items {

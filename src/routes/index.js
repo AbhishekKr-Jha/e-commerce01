@@ -8,6 +8,7 @@ import AboutPage from '@/views/AboutPage.vue';
 import ContactPage from '@/views/ContactPage.vue';
 import WishlistPage from '@/views/WishlistPage.vue';
 import CartListPage from '@/views/CartListPage.vue';
+import OrdersPage from '@/views/OrdersPage.vue';
 
 
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
   { path: '/profile', component: ProfilePage,meta: { requiresAuth: true } } ,
   { path: '/wishlist', component: WishlistPage,meta: { requiresAuth: true } } ,
   { path: '/cart', component: CartListPage,meta: { requiresAuth: true } } ,
+  { path: '/orders', component: OrdersPage,meta: { requiresAuth: true } } ,
   { path: '/about', component: AboutPage } ,
   { path: '/contact', component: ContactPage } ,
 ];

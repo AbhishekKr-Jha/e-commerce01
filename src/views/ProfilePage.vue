@@ -120,6 +120,7 @@ export default{
         
     },
     updateProductStorage(){
+        // this.isLoader=true
         console.log("product updated, re-rendering profile page!");
         this.wishListData = JSON.parse(localStorage.getItem("watchList"));
         this.cartData = JSON.parse(localStorage.getItem("cartList")) ;
@@ -127,13 +128,14 @@ export default{
     },
     },
     created(){
-        this.getUserData(1)
+        this.getUserData(1) 
+        this.isLoader=true
         EventBus.on("wishlist-check", this.updateProductStorage);
-        // EventBus.on("cart-check", this.updateProductStorage); 
+        EventBus.on("cart-check", this.updateProductStorage); 
     },
     beforeDestroy() {
         EventBus.off("wishlist-check", this.updateProductStorage); 
-    // EventBus.off("cart-check", this.updateProductStorage); 
+    EventBus.off("cart-check", this.updateProductStorage); 
   },
 
 }
@@ -143,7 +145,7 @@ export default{
 
 <template>
      
-     <div v-show="isLoader" class=" h-screen w-full flex justify-center items-center ">
+     <div v-show="isLoader" class="m-auto h-screen w-full flex justify-center items-center ">
     <Loader  />
 </div>
     <div  v-show="!isLoader" style="margin-top: 100px;padding:0 10px;max-width: 1500px;font-family:'Itim', cursive;" class="w-full  mt-40 mx-auto main-container ">
@@ -162,7 +164,7 @@ export default{
 
     <div class="profile-circle text-3xl" >{{ userData.firstname[0].toUpperCase() }}.{{ userData.lastname[0].toUpperCase() }}</div> 
 
-    <div @click="dataToShow=item.name" v-for="(item,index) in userList2" :key="index" style="padding-left: 20px;" :style="dataToShow === item.name ? { backgroundColor: '#EFF8FF', color: 'rgb(1,84,154)' } : {}" class="w-full text-left pointer rounded-lg  menu-list-item ">
+    <div @click="dataToShow=item.name;updateProductStorage()" v-for="(item,index) in userList2" :key="index" style="padding-left: 20px;" :style="dataToShow === item.name ? { backgroundColor: '#EFF8FF', color: 'rgb(1,84,154)' } : {}" class="w-full text-left pointer rounded-lg  menu-list-item ">
         <i class="ri-user-line"></i> {{ item.text }}
     </div>
     <div  style="padding-left: 20px;" class="w-full text-left pointer rounded-lg  menu-list-item logout-btn  ">
@@ -221,10 +223,10 @@ export default{
 
     <!-- ------order details---------- -->
     <div v-show=" dataToShow==='order' "  class="w-full flex flex-wrap justify-center gap-20">
-<template  v-for="item in cartData" :key="item.id">
+<!-- <template  v-for="item in cartData" :key="item.id">
     <ProductCard :title="item.title"  :image="item.image" :price="item.price" :productId="item.id" :productData="item" />
-</template>
-<div v-show="cartData.length==0"> <NoDataSection message="No orders yet" /> </div>
+</template> -->
+<div > <NoDataSection message="No orders yet" /> </div>
 </div>
 
 <!-- -----------cart details-------------- -->

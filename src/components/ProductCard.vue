@@ -123,8 +123,8 @@ created(){
         </div>
     <div class="w-full flex flex-col gap-10">
         <button @click="$router.push({path:'/product-details',query:{id:productId}})" style="width: 100%;padding: 8px 0;" type="button" class="rounded-lg pointer text-lg transition-animation w-full buy-button " >Buy Now</button>
-        <button v-show="!itemInCart" @click="addToCart" style="width: 100%;padding: 8px 0;" type="button" class="rounded-lg pointer text-lg transition-animation  w-full buy-button " >{{ isLoader?"...":"Add To Cart" }}</button>
-        <button v-show="itemInCart" @click="removeFromCart" style="width: 100%;padding: 8px 0;" type="button" class="rounded-lg pointer text-lg transition-animation  w-full buy-button " >{{ isLoader?"...":"Remove From Cart" }}</button>
+        <button v-show="!itemInCart" @click="addToCart" style="width: 100%;padding: 8px 0;" type="button" class="rounded-lg pointer text-lg transition-animation  w-full buy-button " >{{ isLoader?"•••":"Add To Cart" }}</button>
+        <button v-show="itemInCart" @click="removeFromCart" style="width: 100%;padding: 8px 0;" type="button" class="rounded-lg pointer text-lg transition-animation  w-full buy-button " >{{ isLoader?"•••":"Remove From Cart" }}</button>
     </div>
 </div>
 </div>
