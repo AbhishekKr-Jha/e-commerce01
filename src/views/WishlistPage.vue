@@ -45,7 +45,7 @@ export default {
     class="w-full mt-40 mx-auto flex gap-30 justify-center h-min main-container"
   >
     <div v-show="!isLoader" class="w-full flex flex-wrap justify-center gap-30">
-      <template v-for="(item, index) in wishListData" :key="index">
+      <template v-for="(item) in wishListData" :key="item.title">
         <ProductCard
           :title="item.title"
           :image="item.image"
