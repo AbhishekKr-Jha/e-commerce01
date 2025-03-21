@@ -32,7 +32,7 @@ export default {
         getCartData.splice(productIndex, 1);
         localStorage.setItem("cartList", JSON.stringify(getCartData));
         this.refetchCartData();
-        // EventBus.emit("cart-check");
+        EventBus.emit("cart-check");
       } else {
         // this.isLoader=false
         this.$toast.error(response.result || "Something went wrong");
@@ -84,10 +84,15 @@ export default {
         style="padding: 10px"
         class="w-full relative pointer flex gap-20 border-primary rounded-lg cart-items"
       >
+      <!-- <i
+          @click.stop="removeFromCart(item.id)"
+          style="width: 35px; height: 35px; background: red; color: white"
+          class="rri-close-large-line absolute right-10 top-10 text-2xl flex items-center justify-center rounded-full delete-icon"
+        ></i> -->
         <i
           @click.stop="removeFromCart(item.id)"
           style="width: 35px; height: 35px; background: red; color: white"
-          class="ri-delete-bin-line absolute right-10 bottom-10 text-2xl flex items-center justify-center rounded-full"
+          class="ri-delete-bin-line absolute right-10 bottom-10 text-2xl flex items-center justify-center rounded-full delete-icon"
         ></i>
 
         <div
@@ -294,6 +299,11 @@ export default {
 }
 
 @media (max-width: 450px) {
+.delete-icon{
+font-size: 18px;
+width: 30px !important;
+height: 30px !important;
+  }
   .cart-items {
     gap: 10px;
     padding: 5px !important;

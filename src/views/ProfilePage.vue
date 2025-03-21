@@ -114,6 +114,8 @@ export default{
         if(response.status){
             console.log("the response of upadate user is",response.result)
             this.$toast.success("user upadted successfully")
+            this.userData.username=response.result.username
+            this.userData.email=response.result.email                         
         }else{
             this.$toast.error(response.result)   
         }
@@ -201,18 +203,18 @@ export default{
 
 
     <div v-show=" dataToShow==='profile' " style="" class="w-full flex flex-wrap justify-center mx-auto gap-20  rounded-lg profile-input-container">
-        <input type="text" name="username" v-model="userData.username" class="input font-style-itim text-lg profile-input" placeholder="Username" />
+        <input type="text" name="username" v-model="userData.username" class="input font-style-itim text-lg profile-input " placeholder="Username"  />
 <input type="text" name="email" v-model="userData.email" class="input font-style-itim text-lg profile-input" placeholder="Email" />
-<input type="text" name="firstname" v-model="userData.firstname" class="input font-style-itim text-lg profile-input" placeholder="First Name" />
-<input type="text" name="lastname" v-model="userData.lastname" class="input font-style-itim text-lg profile-input" placeholder="Last Name" />
-<input type="text" name="phone" v-model="userData.phone" class="input font-style-itim text-lg profile-input" placeholder="Phone" />
+<input type="text" name="firstname" v-model="userData.firstname" class="input font-style-itim text-lg profile-input input-disabled" placeholder="First Name" disabled />
+<input type="text" name="lastname" v-model="userData.lastname" class="input font-style-itim text-lg profile-input input-disabled" placeholder="Last Name" disabled />
+<input type="text" name="phone" v-model="userData.phone" class="input font-style-itim text-lg profile-input input-disabled" placeholder="Phone" disabled />
     </div>
 
     <div v-show=" dataToShow==='address' " style="" class="w-full flex flex-wrap justify-center mx-auto gap-20  rounded-lg profile-input-container">
-        <input type="text" name="city" v-model="userData.city" class="input font-style-itim text-lg profile-input" placeholder="City" />
-<input type="text" name="street" v-model="userData.street" class="input font-style-itim text-lg profile-input" placeholder="Street" />
-<input type="text" name="zipcode" v-model="userData.zipcode" class="input font-style-itim text-lg profile-input" placeholder="Zipcode" />
-<input type="text" name="number" v-model="userData.number" class="input font-style-itim text-lg profile-input" placeholder="Number" />    </div>
+        <input type="text" name="city" v-model="userData.city" class="input font-style-itim text-lg profile-input input-disabled" placeholder="City" disabled />
+<input type="text" name="street" v-model="userData.street" class="input font-style-itim text-lg profile-input input-disabled" placeholder="Street" disabled />
+<input type="text" name="zipcode" v-model="userData.zipcode" class="input font-style-itim text-lg profile-input input-disabled" placeholder="Zipcode" disabled />
+<input type="text" name="number" v-model="userData.number" class="input font-style-itim text-lg profile-input input-disabled" placeholder="Number" disabled />    </div>
 
 
     <button style="margin-top: 20px" class="rounded-lg pointer text-lg transition-animation buy-button" @click="updateUserData">

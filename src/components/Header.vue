@@ -8,6 +8,8 @@ export default {
     return {
       isHamBurgerOpen: false,
       isUserLoggedIn: localStorage.getItem("token") ? true : false,
+     totalItemsInCart:JSON.parse(localStorage.getItem("cartList")).length || 0,
+     totalItemsInWishlist:JSON.parse(localStorage.getItem("watchList")).length || 0,
       hamburgerList: [
         // {
         //   text: 'Home',
@@ -47,6 +49,8 @@ export default {
     updateHeader() {
       console.log("User updated, re-rendering header!");
       this.isUserLoggedIn = localStorage.getItem("token") ? true : false;
+      this.totalItemsInCart=JSON.parse(localStorage.getItem("cartList")).length || 0,
+      this.totalItemsInWishlist=JSON.parse(localStorage.getItem("watchList")).length || 0
       this.$forceUpdate();
     },
     logoutHandler() {
@@ -60,9 +64,14 @@ export default {
   },
   created() {
     EventBus.on("login-check", this.updateHeader);
+    EventBus.on("cart-check", this.updateHeader);
+    EventBus.on("wishlist-check", this.updateHeader);
   },
   beforeDestroy() {
     EventBus.off("login-check", this.updateHeader);
+    EventBus.off("cart-check", this.updateHeader);
+    EventBus.off("wishlist-check", this.updateHeader);
+
   },
 };
 </script>
@@ -120,10 +129,12 @@ export default {
         class="flex gap-30 menu-display-style"
       >
         <div
-          class="pointer"
+          class="pointer relative "
           :class="{ 'active-nav': $route.path === '/wishlist' }"
           @click="$router.push('/wishlist')"
         >
+        <span v-show="totalItemsInWishlist>0" class="superScript-icon-text" >{{ totalItemsInWishlist }}</span>
+
           <i class="ri-heart-3-line"></i>
         </div>
         <div
@@ -131,13 +142,16 @@ export default {
           :class="{ 'active-nav': $route.path === '/profile' }"
           @click="$router.push('/profile')"
         >
+        
           <i class="ri-user-line"></i>
         </div>
         <div
-          class="pointer"
+          class="pointer relative"
           :class="{ 'active-nav': $route.path === '/cart' }"
           @click="$router.push('/cart')"
         >
+        
+        <span v-show="totalItemsInCart>0" style="" class="superScript-icon-text" >{{ totalItemsInCart }}</span>
           <i class="ri-shopping-cart-line"></i>
         </div>
       </div>

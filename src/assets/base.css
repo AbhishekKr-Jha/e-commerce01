@@ -134,6 +134,8 @@
 .text-primary{color: rgb(1,84,154);}
 .text-white{color: white;}
 
+.bg-primary{background-color: rgb(1,84,154);}
+
 .object-fit-contain{object-fit: contain;}
 
 
@@ -152,3 +154,21 @@
 
 
 
+.superScript-icon-text{
+    font-size:20px;
+    position: absolute;
+    top: 0;
+    right:-10px;
+    background-color: #01549A;
+    color: white;
+    height: 20px;
+    width: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 100%;
+}
+
+.input-disabled{
+    background-color: #d9d9d9b3;
+}

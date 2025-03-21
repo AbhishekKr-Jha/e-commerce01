@@ -41,7 +41,7 @@ export default {
       padding: 0 20px;
       max-width: 1500px;
       font-family: 'Itim', cursive;
-    "
+    "       
     class="w-full mt-40 mx-auto flex gap-30 justify-center h-min main-container"
   >
     <div v-show="!isLoader" class="w-full flex flex-wrap justify-center gap-30">
