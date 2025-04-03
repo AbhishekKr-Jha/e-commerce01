@@ -35,6 +35,7 @@ export default {
         console.log("the response from api helper is",response)
 if(response.status) {
     localStorage.setItem('token',response.result.token)
+    // localStorage.setItem('fake_login_credentials',JSON.stringify())
     this.$router.push("/");
     EventBus.emit("login-check");
     this.$toast.success("Login successful")
@@ -106,13 +107,15 @@ else if(path=='/register') this.isLogin=false
         </button>
       </div>
 
+
+<!-- ---login--- -->
       <div
         v-if="isLogin"
         style="gap: 10px"
         class="w-full flex flex-col justify-center items-center"
       >
         <input
-          class="input  font-bold font-style-itim text-lg "
+          class="input  font-semibold font-style-itim text-lg "
           type="text"
           v-model="loginName"
           placeholder="Username"
@@ -122,7 +125,7 @@ else if(path=='/register') this.isLogin=false
             :type="showLoginPassword ? 'text' : 'password'"
             v-model="loginPassword"
             placeholder="Password"
-            class="outline-none border-none w-full   font-bold font-style-itim text-lg"
+            class="outline-none border-none w-full   font-semibold font-style-itim text-lg"
           />
           <i
             @click="showLoginPassword = !showLoginPassword"
@@ -135,12 +138,13 @@ else if(path=='/register') this.isLogin=false
         </button>
       </div>
 
+      <!-- ----register--- -->
       <div v-else      style="gap: 10px"
       class="w-full flex flex-col justify-center items-center">
-        <input type="text" class="input  font-bold font-style-itim text-lg" v-model="registerName" placeholder="Name" />
-        <input type="email" class="input  font-bold font-style-itim text-lg" v-model="registerEmail" placeholder="Email" />
+        <input type="text" class="input  font-semibold font-style-itim text-lg" v-model="registerName" placeholder="Name" />
+        <input type="email" class="input  font-semibold font-style-itim text-lg" v-model="registerEmail" placeholder="Email" />
         <div class="input flex">
-          <input :type="showRegisterPassword ? 'text' : 'password'" v-model="registerPassword" placeholder="Password"  class="outline-none border-none w-full  font-bold font-style-itim text-lg" />
+          <input :type="showRegisterPassword ? 'text' : 'password'" v-model="registerPassword" placeholder="Password"  class="outline-none border-none w-full  font-semibold font-style-itim text-lg" />
           <i
             @click="showRegisterPassword = !showRegisterPassword"
              :class="showRegisterPassword?'ri-eye-line':'ri-eye-off-line'"
@@ -149,6 +153,12 @@ else if(path=='/register') this.isLogin=false
         </div>
         <button style="margin-top: 20px" class="rounded-lg pointer text-lg submit-button" @click="handleRegister">Register</button>
       </div>
+<div style="color: red;" class=" mt-40 text-center">
+<p>!! It is built with Fake api so you can simulate the register but not actual registration on Grabit.</p>
+<p>!! Do not change the login credentials else you can not login. The login Credentials are -  </p>
+ <p> username: "johnd" & password: "m38rmF$"
+</p>
+</div>
     </div>
   </div>
 
