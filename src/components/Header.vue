@@ -8,8 +8,8 @@ export default {
     return {
       isHamBurgerOpen: false,
       isUserLoggedIn: localStorage.getItem("token") ? true : false,
-     totalItemsInCart:JSON.parse(localStorage.getItem("cartList")).length || 0,
-     totalItemsInWishlist:JSON.parse(localStorage.getItem("watchList")).length || 0,
+     totalItemsInCart:JSON.parse(localStorage.getItem("cartList"))?.length || 0,
+     totalItemsInWishlist:JSON.parse(localStorage.getItem("watchList"))?.length || 0,
       hamburgerList: [
         // {
         //   text: 'Home',
@@ -49,8 +49,8 @@ export default {
     updateHeader() {
       console.log("User updated, re-rendering header!");
       this.isUserLoggedIn = localStorage.getItem("token") ? true : false;
-      this.totalItemsInCart=JSON.parse(localStorage.getItem("cartList")).length || 0,
-      this.totalItemsInWishlist=JSON.parse(localStorage.getItem("watchList")).length || 0
+      this.totalItemsInCart=JSON.parse(localStorage.getItem("cartList"))?.length || 0,
+      this.totalItemsInWishlist=JSON.parse(localStorage.getItem("watchList"))?.length || 0
       this.$forceUpdate();
     },
     logoutHandler() {
